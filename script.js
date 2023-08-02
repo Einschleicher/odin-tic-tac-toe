@@ -2,14 +2,18 @@ const gameBoard = {
     Array: ["X", "O", "X", "O", "X", "O", "X", "O", "X"],
 };
 
-const displayController = {
-    fields: document.querySelectorAll(".board-field"),    
-    renderBoard: () => {
+const displayController = (function() {
+    
+    const fields = document.querySelectorAll(".board-field");
+    
+    function renderBoard() {
         gameBoard.Array.forEach((element, index) => {
-            displayController.fields[index].textContent = element;
+            fields[index].textContent = element;
         });
-    },
-};
+    }
+
+    return { renderBoard };
+})();
 
 const playerFactory = (name) => {
     return { name };
