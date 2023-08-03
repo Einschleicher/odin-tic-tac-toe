@@ -1,13 +1,17 @@
-const gameBoard = {
-    Array: ["X", "O", "X", "O", "X", "O", "X", "O", "X"],
-};
+const gameBoard = (function() {
+
+    const array = ["X", "O", "X", "O", "X", "O", "X", "O", "X"];
+
+    return { array };
+
+})();
 
 const displayController = (function() {
     
     const fields = document.querySelectorAll(".board-field");
     
     function renderBoard() {
-        gameBoard.Array.forEach((element, index) => {
+        gameBoard.array.forEach((element, index) => {
             fields[index].textContent = element;
         });
     }
