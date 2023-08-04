@@ -12,11 +12,14 @@ const displayController = (function() {
     
     function renderBoard() {
         gameBoard.array.forEach((element, index) => {
-            fields[index].textContent = element;
+            const fieldValue = document.createElement("div");
+            fields[index].appendChild(fieldValue);
+            fieldValue.textContent = element;
         });
     }
 
     return { renderBoard };
+    
 })();
 
 const playerFactory = (name) => {
