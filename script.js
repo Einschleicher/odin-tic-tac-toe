@@ -8,18 +8,20 @@ const gameBoard = (function() {
 
 const displayController = (function() {
     
-    const fields = document.querySelectorAll(".board-field");
+    const fields = document.querySelectorAll(".field-marker");
     
     function renderBoard() {
         gameBoard.array.forEach((element, index) => {
-            const fieldValue = document.createElement("div");
-            fields[index].appendChild(fieldValue);
-            fieldValue.textContent = element;
+            fields[index].textContent = element;         
         });
     }
 
-    return { renderBoard };
-    
+    function addMarker(symbol, position) {
+        gameBoard.array[position] = symbol;
+    }
+
+    return { renderBoard, addMarker, fields };
+
 })();
 
 const playerFactory = (name) => {
@@ -28,4 +30,3 @@ const playerFactory = (name) => {
 
 const playerOne = ("Scax");
 const PlayerTwo = ("Lilith");
-
