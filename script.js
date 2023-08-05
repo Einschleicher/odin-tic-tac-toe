@@ -5,6 +5,7 @@ const gameBoard = (function() {
     function addMarker(symbol, position) {
         if (gameBoard.array[position] === "") gameBoard.array[position] = symbol;
         else alert("Error! Field has already been taken");
+        displayController.renderBoard();
     }
 
     return { array, addMarker };
@@ -13,13 +14,22 @@ const gameBoard = (function() {
 
 const displayController = (function() {
     
-    const fields = document.querySelectorAll(".field-marker");
+    const marker = document.querySelectorAll(".field-marker");
     
     function renderBoard() {
         gameBoard.array.forEach((element, index) => {
-            fields[index].textContent = element;         
+            marker[index].textContent = element;         
         });
     }
+
+    const fields = document.querySelectorAll(".board-field");
+
+    // EventListeners
+    fields.forEach((element, index) => {
+        element.addEventListener("click", () => {
+            gameBoard.addMarker("X", index);
+        })
+    });
 
     return { renderBoard };
 
