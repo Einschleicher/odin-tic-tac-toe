@@ -1,8 +1,13 @@
 const gameBoard = (function() {
 
-    const array = ["X", "O", "X", "O", "X", "O", "X", "O", "X"];
+    const array = ["", "", "", "", "", "", "", "", ""];
 
-    return { array };
+    function addMarker(symbol, position) {
+        if (gameBoard.array[position] === "") gameBoard.array[position] = symbol;
+        else alert("Error! Field has already been taken");
+    }
+
+    return { array, addMarker };
 
 })();
 
@@ -16,17 +21,16 @@ const displayController = (function() {
         });
     }
 
-    function addMarker(symbol, position) {
-        gameBoard.array[position] = symbol;
-    }
-
-    return { renderBoard, addMarker, fields };
+    return { renderBoard };
 
 })();
 
-const playerFactory = (name) => {
-    return { name };
+const playerFactory = (name, marker) => {
+    let onTurn = false;
+    return { name, marker, onTurn };
 };
 
-const playerOne = ("Scax");
-const PlayerTwo = ("Lilith");
+const playerOne = playerFactory("Scax", "X");
+const playerTwo = playerFactory("Lilith", "Y");
+
+playerOne.onTurn = true;
