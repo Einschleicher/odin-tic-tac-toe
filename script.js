@@ -7,7 +7,7 @@ const gameBoard = (function() {
             gameBoard.array[position] = symbol;
             displayController.renderBoard();
             runCheckWinner();
-            displayController.changeCurrentPlayer();
+            if (endGame === false) displayController.changeCurrentPlayer();
         }
         else alert("Error! Field has already been taken");
 
@@ -50,6 +50,7 @@ const displayController = (function() {
     function changeCurrentPlayer() {
         if (currentPlayer === playerOne) currentPlayer = playerTwo;
         else currentPlayer = playerOne;
+        winner.textContent = `${currentPlayer.name}, its your turn!`;
     }
 
     const winner = document.querySelector("#winner-display");
@@ -66,10 +67,12 @@ const displayController = (function() {
 
     const button = document.querySelector("button");
 
+    // Restart Gane
     button.addEventListener("click", () => {
         gameBoard.array = ["", "", "", "", "", "", "", "", ""];
         displayController.renderBoard();
-        winner.textContent = "";
+        currentPlayer = playerOne;
+        winner.textContent = `${currentPlayer.name}, its your turn!`;
         endGame = false;
     });
 
@@ -81,8 +84,8 @@ const playerFactory = (name, marker) => {
     return { name, marker };
 };
 
-const playerOne = playerFactory("Scax", "X");
-const playerTwo = playerFactory("Lilith", "O");
+const playerOne = playerFactory("Player 1", "X");
+const playerTwo = playerFactory("Player 2", "O");
 
 let currentPlayer = playerOne;
 let endGame = false;
