@@ -6,10 +6,22 @@ const gameBoard = (function() {
         if (gameBoard.array[position] === "") {
             gameBoard.array[position] = symbol;
             displayController.renderBoard();
+            runCheckWinner();
             displayController.changeCurrentPlayer();
         }
         else alert("Error! Field has already been taken");
 
+    }
+
+    function runCheckWinner() {
+        displayController.checkWinner(0,1,2);
+        displayController.checkWinner(3,4,5);
+        displayController.checkWinner(6,7,8);
+        displayController.checkWinner(0,3,6);
+        displayController.checkWinner(1,4,7);
+        displayController.checkWinner(2,5,8);
+        displayController.checkWinner(0,4,8);
+        displayController.checkWinner(2,4,6);
     }
 
     return { array, addMarker };
@@ -43,7 +55,9 @@ const displayController = (function() {
     function checkWinner(indexOne, indexTwo, indexThree) {
         if (gameBoard.array[indexOne] === gameBoard.array[indexTwo]
             && gameBoard.array[indexTwo] === gameBoard.array[indexThree]) {
-                alert("WINNER!");
+                if (gameBoard.array[indexOne] !== "") {
+                    alert("WINNER!");
+                }
         }
     }
 
