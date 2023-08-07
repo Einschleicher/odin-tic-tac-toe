@@ -36,8 +36,17 @@ body {
 
 /* WORKING GRID + FLEX SOLUTION ABOVE */
 
-#winner-display {
+#ui {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#winner-display {
+    margin-top: 20px;
+}
+
+button {
+    padding: 5px 10px;
     margin-top: 20px;
 }

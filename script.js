@@ -64,6 +64,15 @@ const displayController = (function() {
         }
     }
 
+    const button = document.querySelector("button");
+
+    button.addEventListener("click", () => {
+        gameBoard.array = ["", "", "", "", "", "", "", "", ""];
+        displayController.renderBoard();
+        winner.textContent = "";
+        endGame = false;
+    });
+
     return { renderBoard, changeCurrentPlayer, checkWinner };
 
 })();
