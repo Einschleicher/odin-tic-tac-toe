@@ -65,15 +65,28 @@ const displayController = (function() {
         }
     }
 
-    const button = document.querySelector("button");
+    const restartButton = document.querySelector("#restart");
 
-    // Restart Gane
-    button.addEventListener("click", () => {
+    // Restart Game
+    restartButton.addEventListener("click", () => {
         gameBoard.array = ["", "", "", "", "", "", "", "", ""];
         displayController.renderBoard();
         currentPlayer = playerOne;
         winner.textContent = `${currentPlayer.name}, its your turn!`;
         endGame = false;
+    });
+
+    const playerOneButton = document.querySelector("#name-player-one");
+    const playerTwoButton = document.querySelector("#name-player-two");
+
+    playerOneButton.addEventListener("click", () => {
+        playerOne.name = prompt("Please enter the name of Player 1");
+        winner.textContent = `${currentPlayer.name}, its your turn!`;
+    });
+
+    playerTwoButton.addEventListener("click", () => {
+        playerTwo.name = prompt("Please enter the name of Player 2");
+        winner.textContent = `${currentPlayer.name}, its your turn!`;
     });
 
     return { renderBoard, changeCurrentPlayer, checkWinner };
