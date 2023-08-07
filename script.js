@@ -43,7 +43,7 @@ const displayController = (function() {
     // EventListeners
     fields.forEach((element, index) => {
         element.addEventListener("click", () => {
-            gameBoard.addMarker(currentPlayer.marker, index);
+            if (endGame === false) gameBoard.addMarker(currentPlayer.marker, index);
         })
     });
 
@@ -59,6 +59,7 @@ const displayController = (function() {
             && gameBoard.array[indexTwo] === gameBoard.array[indexThree]) {
                 if (gameBoard.array[indexOne] !== "") {
                     winner.textContent = `${currentPlayer.name} has won the game! gg wp`;
+                    endGame = true;
                 }
         }
     }
@@ -75,3 +76,4 @@ const playerOne = playerFactory("Scax", "X");
 const playerTwo = playerFactory("Lilith", "O");
 
 let currentPlayer = playerOne;
+let endGame = false;
