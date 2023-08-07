@@ -14,6 +14,7 @@ const gameBoard = (function() {
         array = ["", "", "", "", "", "", "", "", ""]; 
     }
 
+    // No benefit compared to returning the array straight away, right?
     const getArray = () => array;
 
     return { addMarker, clearArray, getArray };
