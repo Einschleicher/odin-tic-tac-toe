@@ -52,11 +52,13 @@ const displayController = (function() {
         else currentPlayer = playerOne;
     }
 
+    const winner = document.querySelector("#winner-display");
+
     function checkWinner(indexOne, indexTwo, indexThree) {
         if (gameBoard.array[indexOne] === gameBoard.array[indexTwo]
             && gameBoard.array[indexTwo] === gameBoard.array[indexThree]) {
                 if (gameBoard.array[indexOne] !== "") {
-                    alert("WINNER!");
+                    winner.textContent = `${currentPlayer.name} has won the game! gg wp`;
                 }
         }
     }

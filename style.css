@@ -12,7 +12,7 @@ body {
     background-color: khaki;
 }
 
-/* WORKING GRID + FLEX SOLUTION, GRID ONLY VERTICALLY CENTERED FAILED */
+/* WORKING GRID + FLEX SOLUTION BELOW, GRID ONLY VERTICALLY CENTERED FAILED */
 
 #board-container {
     display: grid;
@@ -32,4 +32,12 @@ body {
 
 .board-field div {
     font-size: 2rem;
+}
+
+/* WORKING GRID + FLEX SOLUTION ABOVE */
+
+#winner-display {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }
