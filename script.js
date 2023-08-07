@@ -3,9 +3,13 @@ const gameBoard = (function() {
     const array = ["", "", "", "", "", "", "", "", ""];
 
     function addMarker(symbol, position) {
-        if (gameBoard.array[position] === "") gameBoard.array[position] = symbol;
+        if (gameBoard.array[position] === "") {
+            gameBoard.array[position] = symbol;
+            displayController.renderBoard();
+            displayController.changeCurrentPlayer();
+        }
         else alert("Error! Field has already been taken");
-        displayController.renderBoard();
+
     }
 
     return { array, addMarker };
@@ -27,20 +31,31 @@ const displayController = (function() {
     // EventListeners
     fields.forEach((element, index) => {
         element.addEventListener("click", () => {
-            gameBoard.addMarker("X", index);
+            gameBoard.addMarker(currentPlayer.marker, index);
         })
     });
 
-    return { renderBoard };
+    function changeCurrentPlayer() {
+        if (currentPlayer === playerOne) currentPlayer = playerTwo;
+        else currentPlayer = playerOne;
+    }
+
+    function checkWinner(indexOne, indexTwo, indexThree) {
+        if (gameBoard.array[indexOne] === gameBoard.array[indexTwo]
+            && gameBoard.array[indexTwo] === gameBoard.array[indexThree]) {
+                alert("WINNER!");
+        }
+    }
+
+    return { renderBoard, changeCurrentPlayer, checkWinner };
 
 })();
 
 const playerFactory = (name, marker) => {
-    let onTurn = false;
-    return { name, marker, onTurn };
+    return { name, marker };
 };
 
 const playerOne = playerFactory("Scax", "X");
-const playerTwo = playerFactory("Lilith", "Y");
+const playerTwo = playerFactory("Lilith", "O");
 
-playerOne.onTurn = true;
+let currentPlayer = playerOne;
